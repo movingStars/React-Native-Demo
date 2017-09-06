@@ -1,6 +1,7 @@
 import React from 'react';
 import {AppRegistry, Text, View, Button ,TextInput } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import SplashScreen from 'react-native-splash-screen'
 
 import ChatScreen from './screens/App';
 
@@ -13,6 +14,10 @@ class HomeScreen extends React.Component {
         text:''
     }
 
+  }
+
+  componentDidMount() {
+      SplashScreen.hide();//关闭启动页
   }
 
   static navigationOptions = {
