@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
@@ -12,7 +12,7 @@ class ChatScreen extends React.Component {
 
     return (
       <View>
-        <Text>Chat with {params.name} hahaha</Text>
+        <Text>Chat with {params.name}</Text>
       </View>
     );
   }
