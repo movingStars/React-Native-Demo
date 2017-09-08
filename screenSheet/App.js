@@ -3,6 +3,8 @@ import { View, Text, Button, Image, ToastAndroid, Alert } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import MoreImagePicker from 'react-native-image-crop-picker';
 
+import { myToast } from '../utils/func';
+
 var ImagePicker = require('react-native-image-picker');
 
 var options = {
@@ -54,7 +56,7 @@ class ChatScreen extends React.Component {
           avatarSource: source
         });
 
-        ToastAndroid.show('图片选中', ToastAndroid.LONG);
+        myToast('选好了','short','center');
 
       }
     });
@@ -118,6 +120,8 @@ class ChatScreen extends React.Component {
             }) : <Text>''</Text>}
 
         </View>
+
+
 
       </View>
     );
