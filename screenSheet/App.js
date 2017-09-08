@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Button, Image, ToastAndroid, Alert } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import MoreImagePicker from 'react-native-image-crop-picker';
 
 var ImagePicker = require('react-native-image-picker');
 
@@ -20,7 +21,8 @@ class ChatScreen extends React.Component {
     constructor (props){
         super(props);
         this.state = {
-            avatarSource:require('../imgs/tabBar/in-ch.png')
+            avatarSource:require('../imgs/tabBar/in-ch.png'),
+            somePicker:[]
         };
     }
 
@@ -59,6 +61,18 @@ class ChatScreen extends React.Component {
 
   }
 
+  chooseMoreImg = () => {
+
+    MoreImagePicker.openPicker({
+      multiple: true
+    }).then(images => {
+      this.setState({
+        somePicker:images
+      })
+    });
+
+  }
+
   render() {
 
   const { params } = this.props.navigation.state;
@@ -69,6 +83,10 @@ class ChatScreen extends React.Component {
         <Button
             onPress = {this.chooseImg}
             title="选择图片"
+        />
+        <Button
+            onPress = {this.chooseMoreImg}
+            title="选择多张图片"
         />
         <View
             style={{flex:1,flexDirection:'row',justifyContent:'center'}}
@@ -86,6 +104,21 @@ class ChatScreen extends React.Component {
               style={{width:100,height:100,marginTop:100}}
            />
         </View>
+
+        <View style={{flex:1,flexDirection:'row'}}>
+
+            {this.state.somePicker.length > 0 ? this.state.somePicker.map((value,index)=>{
+                console.error(value.path,index);
+                return <Image
+                           key={index}
+                           source={{ uri:value.path }}
+                           style={{width:100,height:100}}
+                        />;
+
+            }) : <Text>''</Text>}
+
+        </View>
+
       </View>
     );
   }
